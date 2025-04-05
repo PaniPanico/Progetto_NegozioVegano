@@ -6,22 +6,16 @@ def add_product():
     Gestisce l'aggiunta dei prodotti nell'inventario
     """
 
-    while True:
-        name = str(input("Nome del prodotto: ").strip().lower())
-        quant = inventory.input_value(int,"Quantità")
+    name = str(input("Nome del prodotto: ").strip().lower())
+    quant = inventory.input_value(int,"Quantità")
         
-        if name not in inventory.load_data(inventory.PATH_INVENTORY):
-            net = inventory.input_value(float,"Prezzo di acquisto")
-            gross = inventory.input_value(float,"Prezzo di vendita")
-            inventory.save_new_product(name, quant, net, gross)
-        else:
-            inventory.update_product(name,quant)
-        ask = input("Vuoi aggiungere altri prodotti? (si/no): ")
-        
-        if ask == "si":
-            continue
-        else:
-            break
+    if name not in inventory.load_data(inventory.PATH_INVENTORY):
+        net = inventory.input_value(float,"Prezzo di acquisto")
+        gross = inventory.input_value(float,"Prezzo di vendita")
+        inventory.save_new_product(name, quant, net, gross)
+    else:
+        inventory.update_product(name,quant)
+    print(f"AGGIUNTO: {quant} x {name}" )
 
 def list_product():
 
