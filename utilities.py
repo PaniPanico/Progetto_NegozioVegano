@@ -10,8 +10,13 @@ def add_product():
     quant = inventory.input_value(int,"Quantità")
         
     if name not in inventory.load_data(inventory.PATH_INVENTORY):
-        net = inventory.input_value(float,"Prezzo di acquisto")
-        gross = inventory.input_value(float,"Prezzo di vendita")
+        while True:
+            net = inventory.input_value(float,"Prezzo di acquisto")
+            gross = inventory.input_value(float,"Prezzo di vendita")
+            if net < gross:
+                break
+            else:
+                print("Errore: il prezzo di acquisto deve essere minore del prezzo di vendita. Riprova.")
         inventory.save_new_product(name, quant, net, gross)
     else:
         inventory.update_product(name,quant)
@@ -46,7 +51,7 @@ def sell_product():
             quant = inventory.input_value(int,"Quantità")
             inventory.remove_product_quantity(name,quant)
         
-        ask = input("Vuoi aggiungere altri prodotti? (si/no): ")
+        ask = input("Aggiungere un altro prodotto? (si/no): ")
         if ask == "si":
             continue
         else:
