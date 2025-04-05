@@ -209,13 +209,3 @@ def update_profits():
     
     profit = {"NET":tot_net,"GROSS":tot_gross}
     save_data(PATH_PROFIT,profit)
-
-
-
-    
-  
-
-
-
-    
-
